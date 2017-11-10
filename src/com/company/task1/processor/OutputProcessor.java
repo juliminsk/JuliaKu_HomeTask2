@@ -29,7 +29,12 @@ public class OutputProcessor {
     private static void outputToFile(String message){
         try {
             List<String> strings = Arrays.asList(message);
-            Files.write(Paths.get(FILE_NAME), strings, StandardOpenOption.APPEND);
+            if (Files.exists(Paths.get(FILE_NAME))){
+                Files.write(Paths.get(FILE_NAME), strings, StandardOpenOption.APPEND);
+            } else {
+                Files.write(Paths.get(FILE_NAME), strings, StandardOpenOption.CREATE);
+            }
+
         } catch (IOException e){
             System.out.println("Not possible to write to file: " + FILE_NAME + " message: '" + message + "'");
         }
