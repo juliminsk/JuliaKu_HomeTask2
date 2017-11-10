@@ -1,15 +1,14 @@
 package com.company.task1.vegetables;
 
 public class Cucumber extends Vegetables {
-    public Cucumber(int weight, int calories, String country, boolean GMO) {
-        this.weight = weight;
-        this.calories = calories;
-        this.country = country;
-        this.GMO = GMO;
+
+    public Cucumber(String name, int weight, int calories, boolean GMO, String country) {
+        super(name, weight, calories, GMO, country);
     }
 
+
     @Override
-    public void cooking() {
-        System.out.println("Preparing cucumber");
+    public String cooking() {
+        return "put in slicer-dicer";
     }
 }

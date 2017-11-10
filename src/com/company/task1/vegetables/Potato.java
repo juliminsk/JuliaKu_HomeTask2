@@ -1,16 +1,13 @@
 package com.company.task1.vegetables;
 
 public class Potato extends Vegetables{
-    public Potato(int weight, int calories, String country, boolean GMO) {
 
-        this.weight = weight;
-        this.calories = calories;
-        this.country = country;
-        this.GMO = GMO;
+    public Potato(String name, int weight, int calories, boolean GMO, String country) {
+        super(name, weight, calories, GMO, country);
     }
 
     @Override
-    public void cooking() {
-        System.out.println("Preparing potato");
+    public String cooking() {
+        return "Wash and put away the peel";
     }
 }

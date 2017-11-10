@@ -1,11 +1,11 @@
 package com.company.task1.kitchen;
 
-import com.company.task1.console.Console;
+import com.company.task1.kitchen.exceptions.DuplicatedProductException;
 import com.company.task1.kitchen.exceptions.NotEnoughProductsInFridgeException;
+import com.company.task1.processor.OutputProcessor;
 import com.company.task1.vegetables.*;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class Mixer {
     private ArrayList<Vegetables> vegetables;
@@ -22,35 +22,38 @@ public class Mixer {
         this.vegetables = vegetables;
     }
 
-    public static Mixer fillMixer(Fridge fridge, int quantity) {
+    public static Mixer fillMixer(Fridge fridge, int quantity) throws NotEnoughProductsInFridgeException {
+        if (fridge.getVegetables().size() < quantity){
+            throw new NotEnoughProductsInFridgeException("Not enough ingredients, please, try again");
+        }
+        Set<Vegetables> uniqueProducts = new HashSet<Vegetables>(fridge.getVegetables());
+
+        if (uniqueProducts.size() < quantity){
+            throw new NotEnoughProductsInFridgeException("In Fridge there is not enough unique products!");
+        }
         Random random = new Random();
         ArrayList<Vegetables> veggi = new ArrayList<>();
-        while (true){
+        int i=0;
+        while (i < quantity){
             try {
-                validator(fridge,quantity);
-                for (int i=0; i<quantity; i++){
-                    int product = random.nextInt(fridge.getVegetables().size());
-                    Vegetables someVeg = fridge.getVegetables().get(product);
-                    someVeg.cooking();
-                    veggi.add(someVeg);
-                    fridge.getVegetables().remove(product);
-                    System.out.println("Salad is ready");
-                    return new Mixer(veggi);
+                int product = random.nextInt(fridge.getVegetables().size());
+                Vegetables someVeg = fridge.getVegetables().get(product);
+                if (veggi.contains(someVeg)){
+                    throw new DuplicatedProductException("Trying to take " + someVeg.getName() + " , but we already took it. Let's take smth else");
                 }
-            } catch (NotEnoughProductsInFridgeException e){
-                System.out.println(e.getMessage());
-                Console.vegQuantity();
+                i++;
+                OutputProcessor.outputMessage(someVeg.printRecipe());
+                veggi.add(someVeg);
+                fridge.getVegetables().remove(product);
+            } catch (DuplicatedProductException e) {
+                OutputProcessor.outputMessage(e.getMessage(), false);
             }
-        }
 
-    }
 
-    private static void validator (Fridge fridge, int quantity) throws NotEnoughProductsInFridgeException {
-        try {
-            fridge.getVegetables().get(quantity);
         }
-        catch (IndexOutOfBoundsException e){
-            throw new NotEnoughProductsInFridgeException("Not enough ingredients, please, try again", e);
-        }
+        OutputProcessor.outputMessage("Salad is ready");
+        return new Mixer(veggi);
+
     }
 }
+

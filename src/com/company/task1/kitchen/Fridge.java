@@ -1,5 +1,6 @@
 package com.company.task1.kitchen;
 
+import com.company.task1.processor.OutputProcessor;
 import com.company.task1.vegetables.*;
 
 import java.util.ArrayList;
@@ -23,8 +24,8 @@ public class Fridge {
     public static Fridge fillFridge() {
         Random random = new Random();
         ArrayList<Vegetables> veggi = new ArrayList<Vegetables>();
-        System.out.println("Filling the fridge...");
-        System.out.println();
+        OutputProcessor.outputMessage("Filling the fridge...");
+        OutputProcessor.outputMessage("");
         for (int i=0; i<20; i++){
             int product = random.nextInt(6);
             Vegetables someVeg;
@@ -34,31 +35,31 @@ public class Fridge {
             Boolean GMO = random.nextBoolean();
             switch (product){
                 case 0: {
-                    someVeg = new Tomato (weight, calories, country, GMO);
+                    someVeg = new Tomato ("Tomato", weight, calories, GMO, country);
                     break;
                 }
                 case 1: {
-                    someVeg = new Cucumber(weight, calories, country, GMO);
+                    someVeg = new Cucumber("Cucumber", weight, calories, GMO, country);;
                     break;
                 }
                 case 2: {
-                    someVeg = new Potato (weight, calories, country, GMO);
+                    someVeg = new Potato ("Potato", weight, calories, GMO, country);;
                     break;
                 }
                 case 3: {
-                    someVeg = new Cabbage(weight, calories, country, GMO);
+                    someVeg = new Cabbage("Cabbage", weight, calories, GMO, country);;
                     break;
                 }
                 case 4: {
-                    someVeg = new Carrot (weight, calories, country, GMO);
+                    someVeg = new Carrot ("Carrot", weight, calories, GMO, country);;
                     break;
                 }
                 case 5: {
-                    someVeg = new Pepper (weight, calories, country, GMO);
+                    someVeg = new Pepper ("Pepper", weight, calories, GMO, country);;
                     break;
                 }
                 default:{
-                    someVeg = new Pepper(weight, calories, country, GMO);
+                    someVeg = new Pepper("Pepper", weight, calories, GMO, country);;
                 }
             }
             veggi.add(someVeg);

@@ -1,4 +1,4 @@
-package com.company.task1.console.exceptions;
+package com.company.task1.processor.exceptions;
 
 public class IncorrectUserInputException extends Exception {
 
