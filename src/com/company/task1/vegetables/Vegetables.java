@@ -66,10 +66,10 @@ public abstract class Vegetables {
     @Override
     public String toString() {
         return name + '(' +
-                ", weight=" + weight +
+                "weight=" + weight +
                 ", calories=" + calories +
                 ", GMO=" + GMO +
-                ", country='" + country + '\'' + ')';
+                ", country=" + country + ')';
     }
 
     @Override

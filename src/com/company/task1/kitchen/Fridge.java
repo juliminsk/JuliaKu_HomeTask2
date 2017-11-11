@@ -26,7 +26,7 @@ public class Fridge {
         ArrayList<Vegetables> veggi = new ArrayList<Vegetables>();
         OutputProcessor.outputMessage("Filling the fridge...");
         OutputProcessor.outputMessage("");
-        for (int i=0; i<20; i++){
+        for (int i=0; i<40; i++){
             int product = random.nextInt(6);
             Vegetables someVeg;
             int weight = random.nextInt(300);

@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class InputProcessor {
     public static int vegQuantity() {
         int vegCuantity;
-        OutputProcessor.outputMessage("How many ingredients do you want?");
+        OutputProcessor.outputMessage("How many unique ingredients do you want? (Max 6)");
         while (true){
             try {
                 vegCuantity = consoleInput();
@@ -49,7 +49,7 @@ public class InputProcessor {
     }
 
     public static String readCountry() {
-        OutputProcessor.outputMessage("XXX. Enter Country of origin [1] - 'Belarus', [2] - 'Import', [other] - Skip Filter");
+        OutputProcessor.outputMessage("XXX. Enter Country of origin: [1] - 'Belarus', [2] - 'Import', [0 or other skip filter] - Skip Filter");
         int input;
         while (true){
             try {
@@ -77,7 +77,7 @@ public class InputProcessor {
     }
 
     public static Boolean readGmo() {
-        OutputProcessor.outputMessage("XXX. Enter if should be with GMO [0] - Without GMO, [1] - With GMO, [other] - Skip Filter");
+        OutputProcessor.outputMessage("XXX. Enter if should be with GMO: [0] - Without GMO, [1] - With GMO, [0 or other skip filter] - Skip Filter");
         int input;
         while (true){
             try {
